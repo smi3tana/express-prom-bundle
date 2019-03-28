@@ -68,7 +68,8 @@ function main(opts) {
   }
 
   if (opts.promClient.collectDefaultMetrics) {
-    promClient.collectDefaultMetrics(opts.promClient.collectDefaultMetrics);
+    promClient.register.setDefaultLabels(opts.promClient.collectDefaultMetrics.defaultLabels);
+    promClient.collectDefaultMetrics();
   }
 
   const httpMetricName = opts.httpDurationMetricName || 'http_request_duration_seconds';
